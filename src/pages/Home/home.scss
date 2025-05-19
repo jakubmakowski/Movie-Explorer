@@ -1,0 +1,141 @@
+.home {
+  @include Shape(100vh, 100vw);
+  @include Flex();
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  &__title {
+    @include Font($font-x, initial, initial, $f-Raleway, $c-black);
+    text-align: center;
+  }
+
+  &__poster {
+    width: 20%;
+    height: 50vh;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__modal {
+    @include Flex();
+    @include Position(fixed, 50%, initial, 50%, initial);
+    @include JustifyContent(center);
+    @include AlignItems(center);
+    @include Shape(500px, 400px);
+    flex-direction: column;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    background-color: $c-white;
+    padding: 0px 50px;
+    border-radius: 8px;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  &__background-overlay {
+    @include Position(absolute, 0, 0, 0, 0);
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    pointer-events: none;
+  }
+
+  &__icon {
+    @include Shape(70px, 70px);
+    margin: 20px 0;
+  }
+
+  &__form {
+    @include Flex();
+    @include JustifyContent(center);
+    @include AlignItems(center);
+    width: 100%;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  &__input {
+    @include Font($font-l, initial, initial, $f-Raleway, $c-black);
+    border: 1px solid rgba(81, 81, 81, 0.3);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    width: 100%;
+    box-shadow: 4px 4px 10px 0 rgba(81, 81, 81, 0.3);
+  }
+
+  &__label {
+    @include Font($font-l, initial, initial, $f-Raleway, $c-black);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  &__button {
+    @include Font($font-l, initial, pointer, $f-Raleway, $c-white);
+    @include Shape(30px, 150px);
+    margin: 20px 0;
+    background-color: $c-buttercup;
+    border-radius: 10px;
+    border: none;
+  }
+
+  &__search-container {
+    @include Flex();
+    gap: 10px;
+    width: 100%;
+  }
+
+  &__error {
+    color: $c-crimson;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__info {
+    @include Font($font-l, initial, initial, $f-Raleway, $c-crimson);
+    margin-top: 10px;
+  }
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: $c-buttercup;
+    animation: spin 1s ease-in-out infinite;
+    margin: 25px auto;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__search-button {
+    @include Font($font-l, initial, pointer, $f-Raleway, $c-white);
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  }
+}
